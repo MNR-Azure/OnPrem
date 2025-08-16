@@ -1,0 +1,27 @@
+-- STEP 1: Create a new database
+CREATE DATABASE EmployeeDB;
+GO
+
+-- STEP 2: Use the new database
+USE EmployeeDB;
+GO
+
+-- STEP 3: Create the Employee table
+CREATE TABLE Employee (
+    EmployeeID INT PRIMARY KEY,
+    FirstName NVARCHAR(50),
+    LastName NVARCHAR(50),
+    Email NVARCHAR(100),
+    HireDate DATE,
+    Salary DECIMAL(10, 2)
+);
+GO
+
+-- STEP 4: Insert 50,000 sample records using a CTE
+WITH Numbers AS (
+    SELECT TOP (50000)
+        ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS Num
+    FROM master.dbo.spt_values a
+    CROSS JOIN master.dbo.spt_values b
+)
+INSERT INTO Empl
